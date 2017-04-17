@@ -1,0 +1,65 @@
+/* Main Page CSS File */
+html{
+	font-size: 16px;
+}
+body {
+	position: relative;
+	margin: 0;
+	text-align: center;
+	color: white;
+	font-family: Arial, sans-serif;
+	background-color: #ef5350;
+}
+
+.header {
+	width: 100%;
+	background-color: #C62828;
+	font-family: Arial, sans-serif;
+	font-size: 350%;
+	
+}
+@media only screen and (max-width:500px) {
+	.header {
+		font-size: 250%; 
+	}
+}
+/*middle a:nth-child(2n) {
+	background-color: #DEDEDE;
+}
+
+middle a:nth-child(2n+1) {
+	background-color: #EEEEEE;
+}*/
+
+middle {
+	
+	padding: 0px;
+	margin: 0px;
+}
+
+#hie {
+
+	border-top-style: solid;
+	border-top-width: thin;
+	border-top-color: white;
+}
+.line {
+	/*border-right-style: solid;
+	border-right-width: thin;*/
+	border-bottom-style: solid;
+	border-bottom-width: thin;
+	border-bottom-color: white;
+	color: white;
+	position: relative;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	height: auto;
+	background-color: #C62828;
+}
+
+a {
+	text-decoration: none;
+}
+middle a :hover {
+	background-color: #E53935;
+}

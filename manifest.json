@@ -1,17 +1,18 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page, but not really",
-  "version": "1.0",
+  "name": "Old Tab Page",
+  "description": "A basic New Tab Page. Links you want, all in one place.",
+  "version": "0.001",
   
   "browser_action": {
     "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_title": "This is only a test. Seriously."
   },
   
   "chrome_url_overrides" : {
-    "bookmarks": "second.html"
+    "newtab": "index.html"
   },
   
   "permissions": [
