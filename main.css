@@ -15,12 +15,26 @@ h1 {
 	font-size: 300%;
 }
 
-.header {
-	width: 100%;
-	background-color: #C62828;
-	font-family: Arial, sans-serif;
-	font-size: 350%;
-	
+#appbox {
+	display: inline-block;
+	padding: 100px;
+	background-color: red;
+	max-width: 80%;
+}
+
+.app {
+	max-width: 100px;
+	max-height: 100px;
+	padding: 10px;
+	background-color: inherit;
+	display: inline-block;
+}
+a img {
+	vertical-align: bottom;
+	display: block;
+}
+a img:hover {
+	box-shadow: 0px 0px 24px #FFFFFF;
 }
 @media only screen and (max-width:500px) {
 	.header {
@@ -35,35 +49,7 @@ middle a:nth-child(2n+1) {
 	background-color: #EEEEEE;
 }*/
 
-middle {
-	
-	padding: 0px;
-	margin: 0px;
-}
-
-#hie {
-
-	border-top-style: solid;
-	border-top-width: thin;
-	border-top-color: white;
-}
-.line {
-	/*border-right-style: solid;
-	border-right-width: thin;*/
-	border-bottom-style: solid;
-	border-bottom-width: thin;
-	border-bottom-color: white;
-	color: white;
-	position: relative;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	height: auto;
-	background-color: #C62828;
-}
 
 a {
 	text-decoration: none;
-}
-middle a :hover {
-	background-color: #E53935;
 }
