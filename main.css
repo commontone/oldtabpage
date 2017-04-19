@@ -11,6 +11,10 @@ body {
 	background-color: #ef5350;
 }
 
+h1 {
+	font-size: 300%;
+}
+
 .header {
 	width: 100%;
 	background-color: #C62828;
