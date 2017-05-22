@@ -6,4 +6,4 @@ Download all the files into a directory "A" or clone it. This directory should n
 Now, go to chrome://extensions/ .
 Click "Load unpacked extension..."
 Navigate to this directory, select it, and click ok.
-You might have to confirm something. But, after that, your new tab page should be different.
+You might have to confirm something, and definitely turn off any other New Tab Page extensions. But, after that, your new tab page should be different.
