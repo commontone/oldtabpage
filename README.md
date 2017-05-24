@@ -11,9 +11,15 @@ You might have to confirm something, and definitely turn off any other New Tab P
 
 ## Goals
 • Load fast
+
 • Have tiles to click which go to websites
+
 • Easily edit tiles!!!
+
 • Options panel
+
 • Optional Clock
+
 • Optional Google search bar
+
 • Uploadable background
