@@ -10,9 +10,11 @@ var apps = [
 var main = function() {
 	document.getElementById("submitNewAppBtn").addEventListener("click", appFromForm);
 	document.getElementById("rebuildAppsBtn").addEventListener("click", rebuild);
-	document.getElementById("saveBtn").addEventListener("click", appFromForm);
+	document.getElementById("saveBtn").addEventListener("click", saveApps);
+	document.getElementById("loadBtn").addEventListener("click", loadApps);
+	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	console.log("Running Main");
-	test();
+	//test();
 };
 
 var buildApp = function(index) {
@@ -38,9 +40,27 @@ var appFromForm = function() {
 		dateAdded : new Date(),
 		numClicks : 0
 	});
-	apps.forEach(buildBox);
 	console.log(apps);
 };
+
+var saveApps = function() {
+	chrome.storage.sync.set({
+		"apps" : apps
+	}, function() {});
+}
+
+var clearApps = function() {
+	chrome.storage.sync.set({
+		"apps" : []
+	}, function() {});
+}
+
+var loadApps = function() {
+	chrome.storage.sync.get("apps", function(data) {
+		apps = data.apps;
+	});
+}
+
 
 var test = function() {
 	chrome.storage.sync.set({
