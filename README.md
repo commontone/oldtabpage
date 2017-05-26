@@ -12,7 +12,7 @@ You might have to confirm something, and definitely turn off any other New Tab P
 ## Goals
 • Load fast
 
-• Have tiles to click which go to websites
+• Have tiles to click which go to websites (DONE!)
 
 • Easily edit tiles!!!
 
