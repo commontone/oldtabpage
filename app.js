@@ -2,9 +2,11 @@
 //Application Javascript File
 //Author: Robert Burton https://www.robert.red
 //MIT License
+var applist;
 
-console.log("JavaScript File Entered");
-var apps = [];
+
+
+
 
 var main = function() {
 	document.getElementById("submitNewAppBtn").addEventListener("click", appFromForm);
@@ -13,60 +15,58 @@ var main = function() {
 	document.getElementById("loadBtn").addEventListener("click", loadApps);
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	document.getElementById("testBtn").addEventListener("click", testApp);
-	console.log("Running Main");
-	//test();
 };
 
 var buildApp = function(index) {
 	var built = "";
 	built = built + 
 		"<div class=\"app\"><a href=\""
-		+apps[index].appurl
+		+applist[index].appurl
 		+"\"><img style=\"background-color: white;\" src=\""
-		+apps[index].appimage
+		+applist[index].appimage
 		+"\"></a></div>";
 	return built;
 };
 
 var testApp = function() {
-	apps.push({appname : "Google", appurl : "https://www.google.com", appimage : "google.png", dateAdded : new Date()});
+	applist.push({appname : "Google", appurl : "https://www.google.com", appimage : "google.png", dateAdded : new Date()});
 };
 
 var appFromForm = function() {
 	var aname = document.getElementById('newAppTitle').value;
 	var aimage = document.getElementById('newAppImage').value;
 	var aurl = document.getElementById('newAppURL').value;
-	apps.push({
+	applist.push({
 		appname : aname,
 		appurl : aurl,
 		appimage : aimage,
 		dateAdded : new Date(),
 	});
-	console.log(apps);
 };
 
 var saveApps = function() {
 	chrome.storage.sync.set({
-		"apps" : apps
+		"apps" : applist
 	}, function() {});
-}
+};
 
 var clearApps = function() {
 	chrome.storage.sync.set({
 		"apps" : []
 	}, function() {});
-}
+};
 
 var loadApps = function() {
 	chrome.storage.sync.get("apps", function(data) {
-		apps = data.apps;
+		applist = data.apps;
+		rebuild();
 	});
-}
+};
 
 
 var test = function() {
 	chrome.storage.sync.set({
-		"apps" : apps,
+		"apps" : applist,
 		"var1" : 5,
 		"var2" : 10
 	}, function() {});
@@ -80,25 +80,23 @@ var test = function() {
 	});
 	*/
 	addApp(0,0,0);
-	console.log(apps[0]);
-	console.log(buildApp(0));
 	var box = document.getElementById("appbox");
 	//box.innerHTML = box.innerHTML + buildApp(0);
-	apps.forEach(buildBox);
+	applist.forEach(buildBox);
 	
 };
 
 var rebuild = function() {
 	var box = document.getElementById("appbox");
 	box.innerHTML = "";
-	apps.forEach(buildBox);
-}
+	applist.forEach(buildBox);
+};
 
 var buildBox = function(item,index) {
 	 var box = document.getElementById("appbox");
 	 box.innerHTML = box.innerHTML + buildApp(index);
 	 
-}
+};
 
 var addApp = function(nname,nurl,nimage) {
 	var box = document.getElementById("appbox");
@@ -111,11 +109,10 @@ var addApp = function(nname,nurl,nimage) {
 	ref.appendChild(theimage);
 	app.appendChild(ref);
 	box.appendChild(app);
-	console.log("test");
-}
-
-window.onload = function(){
-	console.log("Window Onload Called");
-	main();
-	return 0;
 };
+
+document.addEventListener('DOMContentLoaded', function(){
+	applist = [];	
+	main();
+	loadApps();
+}, false);
