@@ -7,19 +7,30 @@ body {
 	margin: 0;
 	text-align: center;
 	color: white;
-	font-family: Arial, sans-serif;
-	background-color: #ef5350;
+	font-family: Verdana, sans-serif;
+	background-color: black;
+}
+
+p {
+	font-size: 300%;
 }
 
 h1 {
 	font-size: 300%;
+	text-decoration: none;
 }
 
 #appbox {
 	display: inline-block;
 	padding: 100px;
-	background-color: red;
+	background-color: black;
 	max-width: 80%;
+}
+
+#optionz {
+	position: fixed;
+	right: 3px;
+	bottom: 3px;
 }
 
 .app {

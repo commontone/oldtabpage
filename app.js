@@ -4,15 +4,15 @@
 //MIT License
 
 console.log("JavaScript File Entered");
-var apps = [
-	{appname : "Google", appurl : "https://www.google.com", appimage : "google.png", lastClicked : new Date(), dateAdded : new Date(), numClicks : 0}
-];
+var apps = [];
+
 var main = function() {
 	document.getElementById("submitNewAppBtn").addEventListener("click", appFromForm);
 	document.getElementById("rebuildAppsBtn").addEventListener("click", rebuild);
 	document.getElementById("saveBtn").addEventListener("click", saveApps);
 	document.getElementById("loadBtn").addEventListener("click", loadApps);
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
+	document.getElementById("testBtn").addEventListener("click", testApp);
 	console.log("Running Main");
 	//test();
 };
@@ -28,6 +28,10 @@ var buildApp = function(index) {
 	return built;
 };
 
+var testApp = function() {
+	apps.push({appname : "Google", appurl : "https://www.google.com", appimage : "google.png", dateAdded : new Date()});
+};
+
 var appFromForm = function() {
 	var aname = document.getElementById('newAppTitle').value;
 	var aimage = document.getElementById('newAppImage').value;
@@ -36,9 +40,7 @@ var appFromForm = function() {
 		appname : aname,
 		appurl : aurl,
 		appimage : aimage,
-		lastClicked : new Date(),
 		dateAdded : new Date(),
-		numClicks : 0
 	});
 	console.log(apps);
 };
