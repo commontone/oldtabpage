@@ -15,7 +15,29 @@ var main = function() {
 	document.getElementById("loadBtn").addEventListener("click", loadApps);
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	document.getElementById("testBtn").addEventListener("click", testApp);
+	//document.getElementById("imgBtn").addEventListener("click", imgData);
 };
+
+//Test creating/saving an image data URL
+var imgData = function(url, callback) {
+	var img = new Image();
+	img.crossOrigin="anonymous";
+    img.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // Get raw image data
+        //callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+        // ... or get as Data URI
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    img.src = url;
+}
 
 //For a given index of the applist array, build a string to use as the html for that app
 var buildApp = function(index) {
@@ -39,12 +61,18 @@ var appFromForm = function() {
 	var aname = document.getElementById('newAppTitle').value;
 	var aimage = document.getElementById('newAppImage').value;
 	var aurl = document.getElementById('newAppURL').value;
-	applist.push({
-		appname : aname,
-		appurl : aurl,
-		appimage : aimage,
-		dateAdded : new Date(),
+	var uimage = 0;
+	imgData(aimage, function(dataUri) {
+		uimage = dataUri;
+		applist.push({
+			appname : aname,
+			appurl : aurl,
+			appimage : uimage,
+			dateAdded : new Date(),
+		});
 	});
+	
+	
 };
 
 //Save the current applist to Chrome storage
