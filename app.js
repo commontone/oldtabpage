@@ -15,10 +15,10 @@ var main = function() {
 	document.getElementById("loadBtn").addEventListener("click", loadApps);
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	document.getElementById("testBtn").addEventListener("click", testApp);
-	//document.getElementById("imgBtn").addEventListener("click", imgData);
 };
 
 //Test creating/saving an image data URL
+//Code appropriated from https://davidwalsh.name/convert-image-data-uri-javascript
 var imgData = function(url, callback) {
 	var img = new Image();
 	img.crossOrigin="anonymous";
@@ -77,21 +77,21 @@ var appFromForm = function() {
 
 //Save the current applist to Chrome storage
 var saveApps = function() {
-	chrome.storage.sync.set({
+	chrome.storage.local.set({
 		"apps" : applist
 	}, function() {});
 };
 
 //Clear the applist that resides in Chrome storage
 var clearApps = function() {
-	chrome.storage.sync.set({
+	chrome.storage.local.set({
 		"apps" : []
 	}, function() {});
 };
 
 //Load the applist from Chrome storage
 var loadApps = function() {
-	chrome.storage.sync.get("apps", function(data) {
+	chrome.storage.local.get("apps", function(data) {
 		applist = data.apps;
 		rebuild();
 	});
@@ -99,17 +99,17 @@ var loadApps = function() {
 
 //Test setting some variables and building the app box
 var test = function() {
-	chrome.storage.sync.set({
+	chrome.storage.local.set({
 		"apps" : applist,
 		"var1" : 5,
 		"var2" : 10
 	}, function() {});
-	//chrome.storage.sync.clear();
+	//chrome.storage.local.clear();
 	/*
-	chrome.storage.sync.get("var1", function(data) {
+	chrome.storage.local.get("var1", function(data) {
 		console.log(data.var1);
 	});
-	chrome.storage.sync.get("var2", function(dataz) {
+	chrome.storage.local.get("var2", function(dataz) {
 		console.log(dataz.var2);
 	});
 	*/
