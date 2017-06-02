@@ -3,7 +3,7 @@
 
   "name": "Old Tab Page",
   "description": "A basic New Tab Page. Links you want, all in one place.",
-  "version": "0.001",
+  "version": "0.003",
   
   "browser_action": {
     "default_icon": "icon.png",
@@ -17,6 +17,8 @@
   
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "https://ajax.googleapis.com/",
+		"storage",
+		"*://*/*"
   ]
 }

@@ -15,6 +15,8 @@ var main = function() {
 	document.getElementById("loadBtn").addEventListener("click", loadApps);
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	document.getElementById("testBtn").addEventListener("click", testApp);
+	document.getElementById("optionz").addEventListener("click", toggleOps);
+	toggleOps();
 };
 
 //Test creating/saving an image data URL
@@ -37,6 +39,16 @@ var imgData = function(url, callback) {
     };
 
     img.src = url;
+}
+
+//Toggles the form to add buttons
+var toggleOps = function() {
+	var ops = document.getElementById("newApp");
+	if(ops.style.display == "block") {
+		ops.style.display = "none";
+	} else {
+		ops.style.display = "block";
+	}
 }
 
 //For a given index of the applist array, build a string to use as the html for that app
@@ -134,7 +146,7 @@ var buildBox = function(item,index) {
 	 
 };
 
-//Old. Do not use. Used to add apps.
+//Old. Do not use. Formerly to add apps.
 var addApp = function(nname,nurl,nimage) {
 	var box = document.getElementById("appbox");
 	var app = document.createElement("div");
