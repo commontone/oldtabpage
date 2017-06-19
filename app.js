@@ -83,8 +83,6 @@ var appFromForm = function() {
 			dateAdded : new Date(),
 		});
 	});
-	
-	
 };
 
 //Save the current applist to Chrome storage
@@ -103,7 +101,15 @@ var clearApps = function() {
 
 //Load the applist from Chrome storage
 var loadApps = function() {
+	if(chrome.storage.local.get("apps")) {
+		console.log(1);
+	};
 	chrome.storage.local.get("apps", function(data) {
+		if(chrome.runtime.lastError) {
+			chrome.storage.local.set({
+				"apps" : applist
+			});
+		}
 		applist = data.apps;
 		rebuild();
 	});
