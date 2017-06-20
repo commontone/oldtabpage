@@ -9,6 +9,8 @@ var applist;
 
 //Create button listeners
 var main = function() {
+	applist = [];
+	
 	document.getElementById("submitNewAppBtn").addEventListener("click", appFromForm);
 	document.getElementById("rebuildAppsBtn").addEventListener("click", rebuild);
 	document.getElementById("saveBtn").addEventListener("click", saveApps);
@@ -28,8 +30,14 @@ var main = function() {
         }
       });
 	toggleOps();
-	//testApp();
-	//saveApps();
+	chrome.storage.local.get("apps", function(data) {
+		console.log("There are no apps. "+ (!("apps" in data)));
+		if(!("apps" in data)) {
+			testApp();
+			saveApps();
+		}
+		loadApps();
+	});
 };
 
 var imageExists = function(url, callback) {
@@ -124,6 +132,10 @@ var clearApps = function() {
 
 //Load the applist from Chrome storage
 var loadApps = function() {
+	chrome.storage.local.get("apps", function(data) {
+		console.log("There are no apps. "+ (!("apps" in data)));
+		console.log("Bacon!");
+	});
 	
 	chrome.storage.local.get("apps", function(data) {
 		if(chrome.runtime.lastError) {
@@ -133,6 +145,7 @@ var loadApps = function() {
 		}
 		applist = data.apps;
 		console.log(data);
+		console.log("Cheese!");
 		rebuild();
 	});
 };
@@ -174,7 +187,7 @@ var buildBox = function(item,index) {
 	 
 };
 
-//Old. Do not use. Formerly to add apps.
+//Deprecated. Formerly to add apps.
 var addApp = function(nname,nurl,nimage) {
 	var box = document.getElementById("appbox");
 	var app = document.createElement("div");
@@ -188,9 +201,7 @@ var addApp = function(nname,nurl,nimage) {
 	box.appendChild(app);
 };
 
-//Called on page load; calls the main and loads the apps.
+//Called on page load; calls the main.
 document.addEventListener('DOMContentLoaded', function(){
-	applist = [];	
 	main();
-	loadApps();
 }, false);
