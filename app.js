@@ -16,12 +16,35 @@ var main = function() {
 	document.getElementById("clearBtn").addEventListener("click", clearApps);
 	document.getElementById("testBtn").addEventListener("click", testApp);
 	document.getElementById("optionz").addEventListener("click", toggleOps);
+	chrome.storage.onChanged.addListener(function(changes, namespace) {
+        for (key in changes) {
+          var storageChange = changes[key];
+          console.log('Storage key "%s" in namespace "%s" changed. ' +
+                      'Old value was "%s", new value is "%s".',
+                      key,
+                      namespace,
+                      storageChange.oldValue,
+                      storageChange.newValue);
+        }
+      });
 	toggleOps();
+	//testApp();
+	//saveApps();
 };
+
+var imageExists = function(url, callback) {
+  var img = new Image();
+  img.onload = function() { callback(true); };
+  img.onerror = function() { callback(false); };
+  img.src = url;
+}
 
 //Test creating/saving an image data URL
 //Code appropriated from https://davidwalsh.name/convert-image-data-uri-javascript
 var imgData = function(url, callback) {
+	imageExists(url, function(exists) {
+		console.log('RESULT: url=' + url + ', exists=' + exists);
+	});
 	var img = new Image();
 	img.crossOrigin="anonymous";
     img.onload = function () {
@@ -101,9 +124,7 @@ var clearApps = function() {
 
 //Load the applist from Chrome storage
 var loadApps = function() {
-	if(chrome.storage.local.get("apps")) {
-		console.log(1);
-	};
+	
 	chrome.storage.local.get("apps", function(data) {
 		if(chrome.runtime.lastError) {
 			chrome.storage.local.set({
@@ -111,6 +132,7 @@ var loadApps = function() {
 			});
 		}
 		applist = data.apps;
+		console.log(data);
 		rebuild();
 	});
 };
